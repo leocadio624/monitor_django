@@ -7,20 +7,34 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
 from django.conf import settings
+from apps.monitorICM.models import Intercarrier
+from datetime import datetime
+
+            
 
 
+"""
+* Descripcion: Renderiza el template
+* del monitor ICM
+* Fecha de la creacion:     18/05/2023
+* Author:                   Eduardo Bernal
+"""
 def viewMonitoreoICM(request):
 
     my_dict = {"insert_me": "I am from views.py"}
     return render(request,'monitorICM.html',context=my_dict)
-    #return HttpResponse("return cadena")
-    #return HttpResponse(template.render())
 
 
 
+
+"""
+* Descripcion: Renderiza tabla de conexiones
+* en una solicitud get
+* Fecha de la creacion:     19/05/2023
+* Author:                   Eduardo Bernal
+"""
 def tablaConexiones(request):
-
-    """
+    
     f = open(settings.RESULTADO_MONITOREO, "r")
     cadena = f.read()
     cadena = cadena.replace("\n","")
@@ -28,21 +42,27 @@ def tablaConexiones(request):
     cadena = cadena[0:len(cadena)-1]
     
     cadena = '['+cadena+']'
-    """
+    conexiones = json.loads(cadena)
+
+    for i in conexiones:
+
+        icm             = Intercarrier.objects.filter(nombre = i['ICM'], ip = i['IP']).first()
+        date_time_obj   = datetime.strptime(i['FECHA'] + ' ' + i['HORA'], '%Y-%m-%d %H:%M:%S')
+
+        icm.fecha_conexion = date_time_obj
+        icm.save()
+
+    icms = Intercarrier.objects.all()
+    contexto = {'conexiones' : icms}
     
-    #conexiones = json.loads(cadena)
-
-
-    #my_dict = {"insert_me": "I am from views.py"}
-    contexto = {"conexiones":[{"ICM":"MOVI","IP":"10.14.164.42","CON":"0","FECHA":"2023-05-17","HORA":"15:58:56"},{"ICM":"SYBASE","IP":"74.117.9.62","CON":"5","FECHA":"2023-05-17","HORA":"15:58:56"},{"ICM":"SYNIVERSE","IP":"173.209.200.137","CON":"2","FECHA":"2023-05-17","HORA":"15:58:56"}]}
 
     return render(request,'tb_conexciones.html',context = contexto)
 
-    #return HttpResponse("return cadena")
-    #return HttpResponse(template.render())
+    
+    
 
 
-# Create your views here.
+
 
 
 @csrf_exempt 

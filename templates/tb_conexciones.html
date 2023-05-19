@@ -12,20 +12,22 @@
 
 		{% for i in conexiones %}
 		<tr>
-			<td>{{ i.ICM }}</td>
-			<td>{{ i.IP }}</td>
-			<td>{{ i.FECHA }} {{ i.HORA }}</td>
-			{% if i.CON > "0" %}
+			<td>{{ i.nombre }}</td>
+			<td>{{ i.ip }}</td>
+			<td>{{ i.fecha_conexion }}</td>
+			{% if i.conexiones > 0 %}
 			<td>
-				<img width = "25" height = "25" src= "{% static 'images/aprobado.png' %}" title = "Intercarrier con {{i.CON}} conexiones exitosas" style = "cursor:pointer" />
+				<img width = "25" height = "25" src= "{% static 'images/aprobado.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones exitosas" style = "cursor:pointer" />
 			</td>
 			{% else %}
 			<td>
-				<img width = "25" height = "25" src= "{% static 'images/warning.png' %}" title = "Intercarrier con {{i.CON}} conexiones" style = "cursor:pointer"/>
+				<img width = "25" height = "25" src= "{% static 'images/warning.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones" style = "cursor:pointer"/>
 			</td>
 			{% endif %}
 		</tr>	
 		{% endfor %}
+
+		
     </tbody>
     
 </table>
