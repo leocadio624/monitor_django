@@ -35,22 +35,31 @@ def viewMonitoreoICM(request):
 """
 def tablaConexiones(request):
     
-    f = open(settings.RESULTADO_MONITOREO, "r")
-    cadena = f.read()
-    cadena = cadena.replace("\n","")
-    cadena = cadena.strip()
-    cadena = cadena[0:len(cadena)-1]
-    
-    cadena = '['+cadena+']'
-    conexiones = json.loads(cadena)
 
-    for i in conexiones:
+    try:
+        
+        f = open(settings.RESULTADO_MONITOREO, "r")
+        cadena = f.read()
+        cadena = cadena.replace("\n","")
+        cadena = cadena.strip()
+        cadena = cadena[0:len(cadena)-1]
+        
+        cadena = '['+cadena+']'
+        conexiones = json.loads(cadena)
 
-        icm             = Intercarrier.objects.filter(nombre = i['ICM'], ip = i['IP']).first()
-        date_time_obj   = datetime.strptime(i['FECHA'] + ' ' + i['HORA'], '%Y-%m-%d %H:%M:%S')
+        for i in conexiones:
 
-        icm.fecha_conexion = date_time_obj
-        icm.save()
+            icm             = Intercarrier.objects.filter(nombre = i['ICM'], ip = i['IP']).first()
+            date_time_obj   = datetime.strptime(i['FECHA'] + ' ' + i['HORA'], '%Y-%m-%d %H:%M:%S')
+
+            icm.fecha_conexion = date_time_obj
+            icm.save()
+
+
+    except:
+        
+        print("No se pudo leer archivo") 
+
 
     icms = Intercarrier.objects.all()
     contexto = {'conexiones' : icms}
@@ -64,7 +73,11 @@ def tablaConexiones(request):
 
 
 
-
+"""
+* Descripcion: Realiza una solicitud post
+* Fecha de la creacion:     19/05/2023
+* Author:                   Eduardo Bernal
+"""
 @csrf_exempt 
 def getConections(request):
 
