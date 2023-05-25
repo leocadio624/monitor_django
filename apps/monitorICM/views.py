@@ -53,9 +53,11 @@ def tablaConexiones(request):
             date_time_obj   = datetime.strptime(i['FECHA'] + ' ' + i['HORA'], '%Y-%m-%d %H:%M:%S')
 
             icm.fecha_conexion = date_time_obj
+            icm.conexiones = int(i['CON'])
+
             icm.save()
 
-
+        print("Carga de archivo exitosa") 
     except:
         
         print("No se pudo leer archivo") 

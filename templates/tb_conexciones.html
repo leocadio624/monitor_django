@@ -1,33 +1,57 @@
 {% load static %}
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Intercarrier</th>
-        <th>IP</th>
-        <th>Fecha conexi&oacute;n</th>
-        <th>Estado</th>
-    </tr>
-    </thead>
-    <tbody>
-
-		{% for i in conexiones %}
+<div class = "container" >
+	<div id = "div_tabla">
+	<table class="table table-hover tb_responsive shadow">
+		<thead>
 		<tr>
-			<td>{{ i.nombre }}</td>
-			<td>{{ i.ip }}</td>
-			<td>{{ i.fecha_conexion }}</td>
-			{% if i.conexiones > 0 %}
-			<td>
-				<img width = "25" height = "25" src= "{% static 'images/aprobado.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones exitosas" style = "cursor:pointer" />
-			</td>
-			{% else %}
-			<td>
-				<img width = "25" height = "25" src= "{% static 'images/warning.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones" style = "cursor:pointer"/>
-			</td>
-			{% endif %}
-		</tr>	
-		{% endfor %}
+			<th>Intercarrier</th>
+			<th>IP</th>
+			<th>Fecha de conexi&oacute;n</th>
+			<th>Estado</th>
+		</tr>
+		</thead>
+		<tbody>
 
+			{% for i in conexiones %}
+			
+			
+			
+			
+			
+			{% if i.conexiones > 0 %}
+				
+			<tr>
+						
+						<td>{{ i.nombre }}</td>
+						<td>{{ i.ip }}</td>
+						<td>{{ i.fecha_conexion }}</td>
+						<td >
+							<img width = "25" height = "25" src= "{% static 'images/aprobado.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones exitosas" style = "cursor:pointer" />
+						</td>
+					
+					</tr>
+				{% else %}
+				<tr>
+						
+						
+						<td>{{ i.nombre }}</td>
+						<td>{{ i.ip }}</td>
+						<td>{{ i.fecha_conexion }}</td>
+						<td>
+							<img width = "25" height = "25" src= "{% static 'images/warning.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones" style = "cursor:pointer"/>
+						</td>
+					
+				</tr>
+					{% endif %}
+					
+					
+					{% endfor %}
+
+			
+		</tbody>
 		
-    </tbody>
-    
-</table>
+	</table>
+
+	</div>
+
+</div>

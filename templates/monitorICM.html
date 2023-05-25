@@ -18,39 +18,173 @@
 
     <title>Monitoreo ICM</title>
   	</head>
+
+	<style>
+		body{
+			background-image: url("{% static 'images/greyzz.png' %}");
+		}
+
+		tr.group,
+		tr.group:hover {
+		background-color: #009FDB !important;
+		}
+		.tb_responsive thead {background-image: linear-gradient(#004A82, #009FDB);}
+		.tb_responsive tbody tr:nth-child(odd){background:#f2f2f2;}
+		.tb_responsive td{border-top:0px !important;border-right:1px solid #fff !important;
+			text-align:center; 
+			vertical-align: middle;
+			padding-top:5px!important;
+			padding-bottom:5px!important;
+		}
+		.tb_responsive tbody tr:nth-child(even){background:#FFF; }
+		.tb_responsive thead tr th{text-align:center;}
+		.tdFiltro{
+		border-radius:3px;
+		}
+	
+		#div_tabla{
+			border: 1px solid #009FDB;
+			border-radius:3px;
+			margin-top:30px;
+			margin-bottom:30px;
+			background-color: #fff;
+		}
+		.tb_responsive{
+			margin:0px!important;
+			padding:0px!important;
+		}
+	
+		.tb_responsive thead tr th{
+			font-size:16px;
+			color: #FFF;
+		}
+		.tb_responsive tbody tr td{
+			font-size:11px;
+		}
+		
+	</style>
+
+
   	<body>
+	
+	<!--
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class = "container-fluid">
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class = "navbar-header">
+				<ul class = "navbar-nav">
+					<li class = "nav-item" >
+						<NavLink class = "nav-link logo" active = "active" >
+							<img src= "{% static 'images/logo-att.svg' %}" width = "100%" height = "100%" alt="User Icon" />
+						</NavLink>
+						
+							
+						
+					</li>
+				</ul>
+			</div>
+			<div class="collapse navbar-collapse justify-content-start" id="navbarNav" >
+				<ul class = "navbar-nav">
+					<li class = "nav-item">
+						<NavLink exact to = "/iniciar_sesion" class = "nav-link" activeClass = "active" ><span class = "glyphicon glyphicon-user"></span>Iniciar sesion</NavLink>
+					</li>
+				</ul>
+			</div>
+		
 
 
-	<input type = "text" id = "prueba" value = "frfr" />
-	<button onclick = "prueba()" >prueba</button>
+		</div>
+	</nav>
+	-->
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #f2f2f2!important;">
+		
+		
+		<a class="navbar-brand" href="#" style = "margin-left:20px;">
+			<img src= "{% static 'images/logo-att.svg' %}" width="100%" height="100%" alt="">
+		</a>
+		<a class="navbar-brand" href="#" style = "font-size:24px!important;"><strong>Monitoreo de conexiones ICM</strong></a>
+		
+			
+		
+		
+		
+	</nav>
+
+	<!--
+	-->
+
+	<!--
+
+		<nav class = "navbar navbar-expand-lg navbar-light bg-light" >
+			<div class = "container-fluid">
+				
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			
+			<div class = "navbar-header">
+				<ul class = "navbar-nav">
+					<li class = "nav-item" >
+						<NavLink exact to = "/" class = "nav-link logo" activeClass = "active" >
+							<img src= "{% static 'images/logo-att.svg' %}" width="100%" height="100%" alt="">
+						</NavLink>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="collapse navbar-collapse justify-content-center" id="navbarNav" >
+				<ul class = "navbar-nav">
+					<li className = "nav-item">
+						<NavLink exact to = "/iniciar_sesion" class = "nav-link" activeClass = "active" ><span class = "glyphicon glyphicon-user"></span>Iniciar sesion</NavLink>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+	</nav>
+	-->
+
+	
+
+
+	
 	<div class = "container">
-		<div id = "tb_conexiones" ></div>
+
+		<button onclick = "prueba()" >prueba</button>
+
+		<div id = "tb_conexiones" style = "margin-top:40px;"></div>
 	</div>
+	<!--
+		<input type = "text" id = "prueba" value = "frfr" />
+
+		<div class = "" style = "margin-top:400px;">
+			<div id = "tb_conexiones" ></div>
+		</div>
+	-->
 	
 	
-</body>
+	</body>
 </html>
 <script>
-/*
-let timerId = setInterval(() => {
-	console.log(Date());
 	
-}, 300000);
-*/
-
-
-let timerId = setInterval(() => {
-
-	$.ajax({
-	url : 'http://127.0.0.1:8000/tablaConexiones/',
-	type : 'get',
-	success : function(response) {
-
-		$('#tb_conexiones').html(response);
-	
+	let timerId = setInterval(() => {
+		
+		$.ajax({
+			url : 'http://127.0.0.1:8000/tablaConexiones/',
+		type : 'get',
+		success : function(response) {
+			
+			$('#tb_conexiones').html(response);
+			
 	},
 	error : function(jqXHR, status, error) {
-	
+		
 	},
 	complete : function(jqXHR, status) {
 	}
@@ -58,7 +192,10 @@ let timerId = setInterval(() => {
 	console.log(Date());
 
 	
-}, 5000);
+}, 3000);
+
+/*
+*/
 
 
 
