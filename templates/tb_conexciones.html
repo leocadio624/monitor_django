@@ -4,10 +4,11 @@
 	<table class="table table-hover tb_responsive shadow">
 		<thead>
 		<tr>
-			<th>Intercarrier</th>
-			<th>IP</th>
-			<th>Fecha de conexi&oacute;n</th>
-			<th>Estado</th>
+			<th style = "width:20%" >Intercarrier</th>
+			<th style = "width:20%" >IP</th>
+			<th style = "width:20%" >N&uacute;mero de conexiones</th>
+			<th style = "width:20%" >Fecha de conexi&oacute;n</th>
+			<th style = "width:20%">Estado</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -24,6 +25,7 @@
 						
 						<td>{{ i.nombre }}</td>
 						<td>{{ i.ip }}</td>
+						<td>{{ i.conexiones }}</td>
 						<td>{{ i.fecha_conexion }}</td>
 						<td >
 							<img width = "25" height = "25" src= "{% static 'images/aprobado.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones exitosas" style = "cursor:pointer" />
@@ -32,20 +34,17 @@
 					</tr>
 				{% else %}
 				<tr>
-						
-						
 						<td>{{ i.nombre }}</td>
 						<td>{{ i.ip }}</td>
+						<td>{{ i.conexiones }}</td>
 						<td>{{ i.fecha_conexion }}</td>
 						<td>
 							<img width = "25" height = "25" src= "{% static 'images/warning.png' %}" title = "Intercarrier con {{i.conexiones}} conexiones" style = "cursor:pointer"/>
 						</td>
-					
 				</tr>
-					{% endif %}
+				{% endif %}
 					
-					
-					{% endfor %}
+			{% endfor %}
 
 			
 		</tbody>
