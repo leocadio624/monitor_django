@@ -10,7 +10,8 @@ from django.conf import settings
 from apps.monitorICM.models import Intercarrier
 from datetime import datetime
 
-            
+import logging
+logger = logging.getLogger(__name__)
 
 
 """
@@ -28,6 +29,10 @@ def viewMonitoreoICM(request):
 
 
 """
+* Descripcion: Se agrega log de para cuando 
+* no se encuentra el archivo
+* Fecha de la creacion:     28/05/2023
+* Author modificacion:      Eduardo Bernal
 * Descripcion: Renderiza tabla de conexiones
 * en una solicitud get
 * Fecha de la creacion:     19/05/2023
@@ -43,7 +48,7 @@ def tablaConexiones(request):
         cadena = cadena.replace("\n","")
         cadena = cadena.strip()
         cadena = cadena[0:len(cadena)-1]
-        
+
         cadena = '['+cadena+']'
         conexiones = json.loads(cadena)
 
@@ -54,20 +59,21 @@ def tablaConexiones(request):
 
             icm.fecha_conexion = date_time_obj
             icm.conexiones = int(i['CON'])
-
             icm.save()
 
-        print("Carga de archivo exitosa") 
     except:
-        
-        print("No se pudo leer archivo") 
 
+        now = datetime.now()
+        date_time_str = now.strftime("%Y-%m-%d %H:%M:%S")
+        logger.warning('Error al acceder al archivo de conexiones '+date_time_str+'')
+        
 
     icms = Intercarrier.objects.all()
     contexto = {'conexiones' : icms}
     
-
     return render(request,'tb_conexciones.html',context = contexto)
+
+
 
     
     
@@ -115,6 +121,8 @@ def getConections(request):
 
     #return HttpResponse("return this string")
 
+    
+
     """
     print(request.method)
 
@@ -122,5 +130,8 @@ def getConections(request):
         res = requests.get(f"https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
         return JsonResponse(res.json())
     """
+
+def handler404(request, exception):
+    return render(request, "not_found.html")
 
 

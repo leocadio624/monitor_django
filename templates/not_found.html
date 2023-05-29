@@ -62,120 +62,19 @@
 
 
   	<body>
-	
-	
-
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-image: linear-gradient(#00a8e0, #33ccff);">
 		
 		
 		<a class="navbar-brand" href="{% url 'monitoreoICM' %}" style = "margin-left:20px;">
 			<img src= "{% static 'images/att-logo-black-transparent.png' %}" width="125" height="50" alt="">
 		</a>
-		<a class="navbar-brand" href="#" style = "font-size:24px!important;"><strong>Monitoreo de conexiones ICM</strong></a>
 		
-			
-		
-		
-		
+				
 	</nav>
-
-	
-
-	
-
 	<div class = "container">
-		<div id = "tb_conexiones" style = "margin-top:40px;"></div>
+		<h4>¿Estas perdido?</h4>    
 	</div>
-	
-	
-	
 	</body>
 </html>
 <script>
-	
-	let timerId = setInterval(() => {
-		
-		$.ajax({
-		url : 'http://127.0.0.1:8000/tablaConexiones/',
-		type : 'get',
-		success : function(response) {
-			
-			$('#tb_conexiones').html(response);
-			
-	},
-	error : function(jqXHR, status, error) {
-		
-	},
-	complete : function(jqXHR, status) {
-	}
-	});
-	console.log(Date());
-
-	
-}, 3000);
-
-
-
-
-
-
-
-
-function prueba(){
-
-	/*
-	$.ajax({
-	url : 'http://127.0.0.1:8000/getConections/',
-	type : 'post',
-	dataType : 'json',
-	success : function(response) {
-
-		
-		let conexiones = response;
-		conexiones.map(function(con){
-			console.log(con);
-		});
-			
-	},
-	error : function(jqXHR, status, error) {
-	
-	},
-	complete : function(jqXHR, status) {
-	}
-	});
-	*/
-
-	$.ajax({
-	url : 'http://127.0.0.1:8000/tablaConexiones/',
-	type : 'get',
-	success : function(response) {
-		
-		$('#tb_conexiones').html(response);
-		//console.log(response);
-
-		/*		
-		let conexiones = response;
-		conexiones.map(function(con){
-			console.log(con);
-		});
-		*/
-			
-	},
-	error : function(jqXHR, status, error) {
-	
-	},
-	complete : function(jqXHR, status) {
-	}
-	});
-
-	
-
-
-
-
-
-	
-	
-}
-
 </script>

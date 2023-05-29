@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-#from apps.monitoreoICM
+
+
 
 
 urlpatterns = [
     path('', include('apps.monitorICM.urls')),
     path('admin/', admin.site.urls),
+    
 ]
+handler404 = 'apps.monitorICM.views.handler404'
