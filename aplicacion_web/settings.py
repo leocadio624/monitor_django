@@ -26,10 +26,11 @@ RESULTADO_MONITOREO = "/home/hsu/Documentos/entornos_virtuales/resultadoMonitore
 SECRET_KEY = 'django-insecure-e64a72!(8vxa&e5&^f%p6-6=$jxa-2&qi0609fuu^47=0z81wl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['172.174.140.250']
-ALLOWED_HOSTS = ['127.0.0.1']
+#ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
