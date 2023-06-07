@@ -1,0 +1,37 @@
+tr.group,
+tr.group:hover {
+background-color: #009FDB !important;
+}
+.tb_responsive thead {background-image: linear-gradient(#004A82, #009FDB);}
+.tb_responsive tbody tr:nth-child(odd){background:#f2f2f2;}
+.tb_responsive td{border-top:0px !important;border-right:1px solid #fff !important;
+    text-align:center; 
+    vertical-align: middle;
+    padding-top:5px!important;
+    padding-bottom:5px!important;
+}
+.tb_responsive tbody tr:nth-child(even){background:#FFF; }
+.tb_responsive thead tr th{text-align:center;}
+.tdFiltro{
+border-radius:3px;
+}
+
+#div_tabla{
+    border: 1px solid #009FDB;
+    border-radius:3px;
+    margin-top:30px;
+    margin-bottom:30px;
+    background-color: #fff;
+}
+.tb_responsive{
+    margin:0px!important;
+    padding:0px!important;
+}
+
+.tb_responsive thead tr th{
+    font-size:16px;
+    color: #FFF;
+}
+.tb_responsive tbody tr td{
+    font-size:11px;
+}
